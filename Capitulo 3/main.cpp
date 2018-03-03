@@ -572,38 +572,29 @@ int exercicio_14()
     }
 }
 
-int exercicio_15()
-{
+int exercicio_15() {
     int primeiro_numero, segundo_numero, t_inicial, tempo_final, resultado;
     srand(time(NULL));
-    primeiro_numero=rand()%10;
-    segundo_numero=rand()%10;
-    t_inicial=time(NULL);
+    primeiro_numero = rand() % 10;
+    segundo_numero = rand() % 10;
+    t_inicial = time(NULL);
     cout << primeiro_numero << "*" << segundo_numero << "? ";
     cin >> resultado;
-    tempo_final=time(NULL);
-    if(resultado==(primeiro_numero*segundo_numero))
-    {
-        int tempo_demorado=tempo_final-t_inicial;
-        if(tempo_demorado<5)
-        {
+    tempo_final = time(NULL);
+    if (resultado == (primeiro_numero * segundo_numero)) {
+        int tempo_demorado = tempo_final - t_inicial;
+        if (tempo_demorado < 5) {
             cout << "Bom!";
-        }
-        else if(tempo_demorado<=10)
-        {
+        } else if (tempo_demorado <= 10) {
             cout << "Suficiente";
-        }
-        else
-        {
+        } else {
 
             cout << "Insuficiente";
         }
-    }
-    else
-    {
+    } else {
         cout << "Muito mau!";
     }
-
+}
 int main()
 {
     cout << "Que exercicio correr? ";
