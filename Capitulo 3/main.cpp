@@ -31,6 +31,44 @@ void exercicio_1()
     cout << "A área é " << s;
 }
 
+
+void exercicio_2()
+{
+    int numero, i=2;
+    bool primo=true;
+    cout << "Que numero quer testar? ";
+    cin >> numero;
+    for(i;i<=sqrt(numero);i++)
+    {
+        int condicao;
+        condicao=numero%i;
+        if(condicao==0)
+        {
+            cout << "O numero nao e primo";
+            primo=false;
+            break;
+        }
+    }
+    if(primo)
+    {
+        cout << "O numero é primo";
+    }
+}
+
+void exercicio_4()
+{
+    double num;
+    unsigned decimal;
+    cout << "Que número arrendondar? ";
+    cin >> num;
+    cout << "Número de casas decimais? ";
+    cin >> decimal;
+    decimal=pow(10,decimal);
+    num=floor(num*decimal+0.5)/decimal;
+    cout << "Numero arredondado: " << num;
+
+}
+
 int main()
 {
     int exercicio;
@@ -40,6 +78,12 @@ int main()
     {
         case 1:
             exercicio_1();
+            break;
+        case 2:
+            exercicio_2();
+            break;
+        case 4:
+            exercicio_4();
             break;
         default:
             cout << "Exercicio nao definido";
