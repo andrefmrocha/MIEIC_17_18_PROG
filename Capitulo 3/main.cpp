@@ -488,6 +488,32 @@ void exercicio_6_d()
     }
 
 }
+
+void exercicio_7()
+{
+    long numero;
+    bool flag=false;
+    int printing_number;
+    cout << "Indique o numero a fatorizar: ";
+    cin >> numero;
+    printing_number = numero;
+    for(long number = numero-1; number>0; number--)
+    {
+        numero=numero*number;
+    }
+    if(numero==0)
+    {
+      cout << "Numero impossivel de representar";
+    }
+    else
+    {
+        cout << printing_number << "!=" << numero;
+    }
+}
+
+//Exercicio 8 nao definido uma vez que este ja foi definido acima
+
+
 int main()
 {
     int exercicio;
@@ -526,6 +552,9 @@ int main()
             break;
         case 64:
             exercicio_6_d();
+            break;
+        case 7:
+            exercicio_7();
             break;
         default:
             cout << "Exercicio nao definido";
