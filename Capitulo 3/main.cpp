@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cmath>
+#include <iomanip>
 
 using namespace std;
 
@@ -242,9 +243,10 @@ void exercicio_5_d()
     denominador_a=leituraNum();
     cout << "Introduza o valor do segundo numerador: ";
     numerador_b=leituraNum();
-    cout << "Introduza o valor do segundo denominador";
+    cout << "Introduza o valor do segundo denominador: ";
     denominador_b=leituraNum();
     cout << "Introduza o símbolo aritmetico da operaçao que quer realizar ";
+    cin >> operacao;
     switch(operacao)
     {
         case '+':
@@ -259,8 +261,232 @@ void exercicio_5_d()
         case '/':
             divFracc(numerador_a,denominador_a,numerador_b,denominador_b);
             break;
+        default:
+            cout << "Operador nao reconhecido";
 
     }
+}
+
+bool Bissexto(int ano)
+{
+    bool flag = false;
+    if(ano%400==0)
+    {
+        flag = true;
+    }
+    else if(ano%4==0)
+    {
+        if(ano%100!=0)
+        {
+            flag = true;
+        }
+    }
+    return flag;
+
+}
+void exercicio_6_a()
+{
+    int ano;
+    bool flag;
+    cout << "Indique o ano a testar: ";
+    cin >> ano;
+    flag=Bissexto(ano);
+    if(flag)
+    {
+        cout << "O ano é bissexto";
+    }
+    else
+    {
+        cout << "O ano não é bissexto";
+    }
+}
+
+int dias_mes(bool flag, int mes)
+{
+    int dias=31;
+    if(mes==2)
+    {
+        if(flag)
+        {
+            dias=29;
+        }
+        else
+        {
+            dias=28;
+        }
+    } else if(mes==4 || mes == 6 || mes == 9 || mes == 11)
+    {
+        dias=30;
+    }
+    return dias;
+}
+void exercicio_6_b()
+{
+    int ano, mes,dias;
+    bool flag;
+    cout << "Indique o ano a testar: ";
+    cin >> ano;
+    flag=Bissexto(ano);
+    cout << "Indique o mes a testar: ";
+    cin >> mes;
+    dias=dias_mes(flag, mes);
+    cout << "O mes indicado tem " << dias << " dias";
+}
+int Babwani_Algorithm(int dia, int mes, int ano, bool flag)
+{
+    double s, a, c;
+    int dia_semana;
+    a=ano%100;
+    s=ano/100;
+    switch(mes)
+    {
+        case 1:
+            c=6;
+            break;
+        case 2:
+            if(flag)
+            {
+                c=3;
+            }
+            else
+            {
+                c=2;
+            }
+            break;
+        case 3:
+            c=3;
+            break;
+        case 4:
+            c=6;
+            break;
+        case 5:
+            c=1;
+            break;
+        case 6:
+            c=4;
+            break;
+        case 7:
+            c=6;
+            break;
+        case 8:
+            c=2;
+            break;
+        case 9:
+            c=5;
+            break;
+        case 10:
+            c=0;
+            break;
+        case 11:
+            c=3;
+            break;
+        case 12:
+            c=5;
+            break;
+    }
+    dia_semana=(floor((5*a)/4)+c+dia-2*(int(s)%4)+7);
+    dia_semana=dia_semana%7;
+    return dia_semana;
+
+}
+
+void exercicio_6_c()
+{
+    int ano, mes,dias, dia;
+    bool flag;
+    cout << "Indique o ano a testar: ";
+    cin >> ano;
+    flag=Bissexto(ano);
+    cout << "Indique o mes a testar: ";
+    cin >> mes;
+    dias=dias_mes(flag, mes);
+    cout << "Indique o dia a testar: ";
+    cin >> dia;
+    dia=Babwani_Algorithm(dia, mes, ano, flag);
+    cout << "O dia da semana é " << dia;
+}
+
+void exercicio_6_d()
+{
+    int ano, mes,dias, dia=1;
+    string month;
+    bool flag;
+    cout << "Indique o ano a testar: ";
+    cin >> ano;
+    flag=Bissexto(ano);
+    cout << "Indique o mes a testar: ";
+    cin >> mes;
+    dias=dias_mes(flag, mes);
+    cout << "\n \n";
+    dia=Babwani_Algorithm(dia, mes, ano, flag);
+    switch (mes)
+    {
+        case 1:
+            month="Janeiro";
+            break;
+        case 2:
+            month="Fevereiro";
+            break;
+        case 3:
+            month="Março";
+            break;
+        case 4:
+            month="Abril";
+            break;
+        case 5:
+            month="Maio";
+            break;
+        case 6:
+            month="Junho";
+            break;
+        case 7:
+            month="Julho";
+            break;
+        case 8:
+            month="Agosto";
+            break;
+        case 9:
+            month="Setembro";
+            break;
+        case 10:
+            month="Outubro";
+            break;
+        case 11:
+            month="Novembro";
+            break;
+        case 12:
+            month="Dezembro";
+            break;
+
+    }
+    cout << month << "/" << ano << endl;
+    cout << "Sáb\t" << "Dom\t" << "Seg\t" << "Ter\t" << "Qua\t" << "Qui\t" << "Sex\t" << endl;
+    int contador=0;
+    for(dia; dia>0; dia-=1)
+    {
+        cout << setw(3) << "\t";
+        contador+=1;
+    }
+    contador=7-contador;
+    dia=1;
+    for (contador; contador>0;contador-=1)
+    {
+        cout << dia << "\t";
+        dia+=1;
+    }
+    cout << "\n";
+    int mudar_linha=0;
+    for (dia; dia<=31;dia++)
+    {
+        if(mudar_linha==7)
+        {
+            mudar_linha=0;
+            cout << "\n";
+        }
+        mudar_linha++;
+        cout << dia << "\t";
+    }
+
 }
 int main()
 {
@@ -289,7 +515,18 @@ int main()
         case 54:
             exercicio_5_d();
             break;
-
+        case 61:
+            exercicio_6_a();
+            break;
+        case 62:
+            exercicio_6_b();
+            break;
+        case 63:
+            exercicio_6_c();
+            break;
+        case 64:
+            exercicio_6_d();
+            break;
         default:
             cout << "Exercicio nao definido";
 
