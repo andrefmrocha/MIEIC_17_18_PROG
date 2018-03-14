@@ -7,14 +7,12 @@ struct Fraction {
     int denominator;
 };
 
-bool readFrac(Fraction frac)
+Fraction readFrac()
 {
-    bool flag=false;
-    if(frac.denominator==0)
-    {
-        flag=true;
-    }
-    return flag;
+    Fraction frac;
+    cout << "Indique o numerador e o denominador, respetivamente: ";
+    cin >> frac.numerator >> frac.denominator;
+    return frac;
 }
 
 void reduceFrac(Fraction &frac)
@@ -85,16 +83,11 @@ void divFracc(Fraction frac_1, Fraction frac_2)
 
 void exercicio_5()
 {
-    bool flag;
     char op;
     Fraction frac_1, frac_2;
-    cout << "Indique o numerador e o denominador, respetivamente: ";
-    cin >> frac_1.numerator >> frac_1.denominator;
-    flag=readFrac(frac_1);
+    frac_1=readFrac();
     reduceFrac(frac_1);
-    cout << "Indique o numerador e o denominador, respetivamente: ";
-    cin >> frac_2.numerator >> frac_2.denominator;
-    flag=readFrac(frac_2);
+    frac_2 =readFrac();
     reduceFrac(frac_2);
     cout << "Indique a operaçao a realizar (pelo sinal): ";
     cin >> op;
@@ -118,6 +111,77 @@ void exercicio_5()
     }
 }
 
+void readIntArray(int a[],int nElem)
+{
+    for(int i=0; i<nElem; i++)
+    {
+        cout << "Indice "<< i << ": " << a[i] << '\n';
+    }
+}
+
+int searchValueinIntArray(const int a[], int nElem, int value)
+{
+    int return_value=-1;
+    for(int i=0; i<nElem; i++)
+    {
+        if (a[i]==value)
+        {
+            return_value=i;
+        }
+    }
+    return return_value;
+}
+
+void exercicio_6_c()
+{
+    int nElem, numero, return_value;
+    cout << "Indique o numero de elementos do array: ";
+    cin >> nElem;
+    int IntArray[]={1, 2, 3, 4, 5, 6, 7};
+    readIntArray(IntArray, nElem);
+    cout << "Que valor deseja procurar? ";
+    cin >> numero;
+    return_value=searchValueinIntArray(IntArray, nElem, numero);
+    cout << "O valor encontra-se na posição de indice " << return_value;
+}
+
+int searchMultValuesInIntArray(const int a[], int nElem, int value, int index[])
+{
+    int counter=0;
+    for(int i=0; i<nElem;i++)
+    {
+        if(a[i]==value)
+        {
+            index[counter]=i;
+            counter++;
+        }
+    }
+    return counter;
+}
+void exercicio_6_d()
+{
+    int nElem, numero, num_return;
+    cout << "Indique o numero de elementos do array: ";
+    cin >> nElem;
+    int IntArray[]={1, 2, 3, 4, 5, 5, 7};
+    cout << "Que valor deseja procurar? ";
+    cin >> numero;
+    int index[nElem];
+    num_return=searchMultValuesInIntArray(IntArray, nElem, numero, index);
+    if(num_return==1)
+    {
+        cout << "O valor ocorre na posição " << index[0];
+    }
+    else
+    {
+        cout << "O valor ocorre nas posiçoes: ";
+        for (int i = 0; i < num_return ; ++i)
+        {
+            cout << index[i] << ", ";
+        }
+    }
+}
+
 int main()
 {
     int exercicio;
@@ -127,6 +191,15 @@ int main()
     {
         case 5:
             exercicio_5();
+            break;
+        case 61:
+            exercicio_6_c();
+            break;
+        case 62:
+            exercicio_6_d();
+            break;
+        default:
+            cout << "Exercicio nao definido";
             break;
     }
 }
