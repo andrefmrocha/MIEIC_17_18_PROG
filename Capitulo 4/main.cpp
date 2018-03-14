@@ -1,5 +1,7 @@
 #include <iostream>
 #include <algorithm>
+#include <vector>
+
 using namespace std;
 
 struct Fraction {
@@ -182,6 +184,28 @@ void exercicio_6_d()
     }
 }
 
+vector<int> readIntVector()
+{
+    vector<int> vector1;
+    cout << "Introduza o primeiro valor: ";
+    cin >> vector1[0];
+    for (int i=1; !cin.fail(); i++)
+    {
+        cout << "Introduza o proximo valor(CTRL+D para parar):";
+        cin >> vector1[i];
+    }
+    return vector1;
+}
+
+void exercicio_7()
+{
+    vector<int> vetor=readIntVector();
+    for(int i=0; i<vetor.size(); i++)
+    {
+        cout << vetor[i] << "\n";
+    }
+
+}
 int main()
 {
     int exercicio;
@@ -198,8 +222,12 @@ int main()
         case 62:
             exercicio_6_d();
             break;
+        case 7:
+            exercicio_7();
+            break;
         default:
             cout << "Exercicio nao definido";
             break;
     }
+
 }
