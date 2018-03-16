@@ -187,12 +187,15 @@ void exercicio_6_d()
 vector<int> readIntVector()
 {
     vector<int> vector1;
+    int number;
     cout << "Introduza o primeiro valor: ";
-    cin >> vector1[0];
-    for (int i=1; !cin.fail(); i++)
+    cin >> number;
+    vector1.push_back(number);
+    for (int i=1; !cin.eof(); i++)
     {
         cout << "Introduza o proximo valor(CTRL+D para parar):";
-        cin >> vector1[i];
+        cin >> number;
+        vector1.push_back(number);
     }
     return vector1;
 }
@@ -202,7 +205,7 @@ void exercicio_7()
     vector<int> vetor=readIntVector();
     for(int i=0; i<vetor.size(); i++)
     {
-        cout << vetor[i] << "\n";
+        cout << "Posição numero " << i << " : " << vetor[i] << "\n";
     }
 
 }
