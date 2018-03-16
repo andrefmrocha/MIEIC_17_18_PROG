@@ -209,6 +209,42 @@ void exercicio_7()
     }
 
 }
+
+void bubblesort(vector<string> &vector)
+{
+    bool flag=true;
+    size_t size = vector.size();
+
+    while(flag)
+    {
+        flag = false;
+        for(int i = 0; i<size-1; i++ )
+        {
+            if(vector[i][0]>vector[i+1][0])
+            {
+                flag=true;
+                string x=vector[i];
+                vector[i]=vector[i+1];
+                vector[i+1]=x;
+            }
+        }
+    }
+}
+void exercicio_8()
+{
+    vector<string> vector;
+    vector.push_back("Andre");
+    vector.push_back("Beatriz");
+    vector.push_back("Daniel");
+    vector.push_back("Andreia");
+    vector.push_back("Carlos");
+    bubblesort(vector);
+    for(int i=0; i<vector.size(); i++)
+    {
+        cout << "Posição numero " << i << " : " << vector[i] << "\n";
+    }
+
+}
 int main()
 {
     int exercicio;
@@ -227,6 +263,9 @@ int main()
             break;
         case 7:
             exercicio_7();
+            break;
+        case 8:
+            exercicio_8();
             break;
         default:
             cout << "Exercicio nao definido";
