@@ -1,6 +1,7 @@
 #include <iostream>
 #include <algorithm>
 #include <vector>
+#include <string>
 
 using namespace std;
 
@@ -245,6 +246,116 @@ void exercicio_8()
     }
 
 }
+
+int BinarySearch(const vector<string> &vetor, string value)
+{
+    size_t bottom = 0;
+    int middle;
+    size_t top = vetor.size()-1;
+    bool flag = false;
+    while(bottom<top && !flag)
+    {
+        middle = (bottom + top)/2;
+        if(vetor[middle] == value)
+        {
+            flag = true;
+        }
+        bottom++;
+        top--;
+    }
+    if(!flag)
+    {
+        middle = -1;
+    }
+
+    return middle;
+
+}
+
+void exercicio_9()
+{
+    vector<string> vector;
+    vector.push_back("Andre");
+    vector.push_back("Beatriz");
+    vector.push_back("Daniel");
+    vector.push_back("Andreia");
+    vector.push_back("Carlos");
+    int indice;
+    indice = BinarySearch(vector, "Daniel");
+    if(indice == -1)
+    {
+        cout << "Valor não encontrado";
+    }
+    else
+    {
+        cout << "O valor pedido foi encontrada na posição de indíce " << indice;
+    }
+}
+
+
+
+void removeDuplicates(vector<int> &vetor)
+{
+    vector<int> repetidos;
+    int i = 0;
+    while ( i < vetor.size() )
+    {
+        bool flag = false;
+        int index = 0;
+        while (index < repetidos.size())
+        {
+            if(repetidos[index] == vetor[i])
+            {
+                flag = true;
+                break;
+            }
+            index++;
+        }
+        if(flag)
+        {
+            vector<int> new_vector;
+            for(int i1 = 0; i1 < vetor.size(); i1++)
+            {
+                if(i1 == i)
+                {
+                    continue;
+                }
+                else
+                {
+                    new_vector.push_back(vetor[i1]);
+                }
+            }
+            vetor=new_vector;
+
+        }
+        else
+        {
+            repetidos.push_back(vetor[i]);
+            i++;
+        }
+    }
+}
+
+
+
+void exercicio_10()
+{
+    vector<int> vector;
+    vector.push_back(5);
+    vector.push_back(1);
+    vector.push_back(2);
+    vector.push_back(7);
+    vector.push_back(4);
+    vector.push_back(4);
+    vector.push_back(2);
+    vector.push_back(7);
+    removeDuplicates(vector);
+    for (int i = 0; i < vector.size(); i++)
+    {
+        cout << "Elemento de indice " << i << ": " << vector[i] << '\n';
+    }
+}
+
 int main()
 {
     int exercicio;
@@ -266,6 +377,12 @@ int main()
             break;
         case 8:
             exercicio_8();
+            break;
+        case 9:
+            exercicio_9();
+            break;
+        case 10:
+            exercicio_10();
             break;
         default:
             cout << "Exercicio nao definido";
