@@ -1,7 +1,7 @@
 #include <iostream>
 #include <algorithm>
 #include <vector>
-#include <string>
+
 
 using namespace std;
 
@@ -230,6 +230,25 @@ void bubblesort(vector<string> &vector)
             }
         }
     }
+}void Intbubblesort(vector<int> &vector)
+{
+    bool flag=true;
+    size_t size = vector.size();
+
+    while(flag)
+    {
+        flag = false;
+        for(int i = 0; i<size-1; i++ )
+        {
+            if(vector[i]>vector[i+1])
+            {
+                flag=true;
+                int x=vector[i];
+                vector[i]=vector[i+1];
+                vector[i+1]=x;
+            }
+        }
+    }
 }
 void exercicio_8()
 {
@@ -337,7 +356,6 @@ void removeDuplicates(vector<int> &vetor)
 }
 
 
-
 void exercicio_10()
 {
     vector<int> vector;
@@ -354,6 +372,71 @@ void exercicio_10()
     {
         cout << "Elemento de indice " << i << ": " << vector[i] << '\n';
     }
+}
+
+vector<int> uniao(const vector<int> &vector1, const vector<int> &vector2)
+{
+    vector<int> union_vector;
+    for(int i = 0; i < vector1.size(); i++)
+    {
+        union_vector.push_back(vector1[i]);
+    }
+    for(int i = 0; i < vector2.size(); i++)
+    {
+        union_vector.push_back(vector2[i]);
+    }
+    removeDuplicates(union_vector);
+    Intbubblesort(union_vector);
+    return union_vector;
+}
+
+vector<int> intersection(const vector<int> &vector1, const vector<int> &vector2)
+{
+    vector<int> intersection_vector;
+    bool flag = false;
+    for(int i = 0; i < vector1.size(); i++)
+    {
+        for(int i2 = 0; i2 < vector2.size(); i2++)
+        {
+            if(vector1[i] == vector2[i2])
+            {
+                flag = true;
+                break;
+            }
+        }
+        if(flag)
+        {
+            intersection_vector.push_back(vector1[i]);
+        }
+        flag = false;
+    }
+    removeDuplicates(intersection_vector);
+    Intbubblesort(intersection_vector);
+    return intersection_vector;
+}
+
+void exercicio_11()
+{
+    vector<int> test_vector_1 = {1, 3, 2, 6, 2, 9, 5, 7};
+    vector<int> test_vector_2 = {1, 5, 6, 0, 1, 4, 5, 7};
+    vector<int> union_vector = uniao(test_vector_1, test_vector_2);
+    vector<int> intersect_vector = intersection(test_vector_1, test_vector_2);
+    cout << "Vetor de Uniao: \n";
+    for (int i=0; i < union_vector.size(); i++)
+    {
+        cout << "Indice " << i << ": " << union_vector[i] << '\n';
+    }
+    cout << "\nVetor de Intersecçao: \n";
+    for (int i=0; i < intersect_vector.size(); i++)
+    {
+        cout << "Indice " << i << ": " << intersect_vector[i] << '\n';
+    }
+
+}
+
+double executeOperation(string op)
+{
+
 }
 
 int main()
@@ -383,6 +466,9 @@ int main()
             break;
         case 10:
             exercicio_10();
+            break;
+        case 11:
+            exercicio_11();
             break;
         default:
             cout << "Exercicio nao definido";
