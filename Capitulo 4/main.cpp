@@ -1,6 +1,7 @@
 #include <iostream>
 #include <algorithm>
 #include <vector>
+#include "Exercicio_13.h"
 
 
 using namespace std;
@@ -469,6 +470,9 @@ int main()
             break;
         case 11:
             exercicio_11();
+            break;
+        case 13:
+            name_Sort();
             break;
         default:
             cout << "Exercicio nao definido";
